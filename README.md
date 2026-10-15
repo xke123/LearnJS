@@ -1,29 +1,47 @@
-# LearnJS · AI 互动式 JavaScript 学习系统
+# LearnJS
 
-中文优先｜单知识体系｜逐题互动｜原理→变式→陷阱→编码→生产场景。
+**学习主线：《现代 JavaScript 教程中文版》原版完整副本。**
 
-## 使用
-1. 克隆本仓库，在 Antigravity IDE 中打开。
-2. 输入：**使用 deep-learn Skill，开始学习 JavaScript 的 this**。
-3. 每次只答一道题。AI 检查「结果 + 推理」，记录错因后决定是否提高难度。
-4. 下次输入「继续学习」，从 `progress/javascript.json` 恢复。
+你按教材原有目录系统阅读文章、完成练习；只有遇到不理解的知识点时，才使用 `deep-learn` Skill 在独立练习区针对性学习。**没有自动续学或第二套课程体系。**
+
+## 1. 获取教材副本
+
+在 Mac 终端执行：
+
+```bash
+git clone https://github.com/xke123/LearnJS.git
+cd LearnJS
+bash scripts/sync-resources.sh textbook
+```
+
+已经克隆过 LearnJS 的话，先 `git pull`，然后运行同步脚本。
+
+这会下载《现代 JavaScript 教程中文版》的**完整工作树**到：
+
+```text
+resources/CN/repos/zh.javascript.info/
+```
+
+教材副本在本地，不会被提交到 LearnJS 仓库（见 `.gitignore`）。再次执行脚本可以更新教材。
+
+## 2. 系统学习
+
+在 Antigravity IDE 中打开 LearnJS，浏览 `resources/CN/repos/zh.javascript.info/`，按照教程原有编号目录顺序阅读 `article.md`，独立完成 `task.md`；做题前不要查看 `solution.md`。
+
+## 3. 难点专项练习
+
+遇到难点时在聊天中输入：
+
+> 使用 deep-learn Skill，针对我正在阅读的这段 JavaScript 教材内容深入练习。一次只出一道题，不要提前给答案。
+
+Skill 的练习代码、笔记和错题放在 `learning/javascript/deep-dives/<topic>/`，不改动教材。专题结束后自行回到教材原位置。
 
 ## 结构
-- `AGENTS.md`：通用 Agent 约束（Codex 也可读取）
-- `.agents/skills/deep-learn/SKILL.md`：Antigravity 学习 Skill
-- `curriculum/javascript/`：课程路线及专题
-- `progress/javascript.json`：持久化进度
-- `exercises/javascript/`：可执行练习
-- `resources/CN/`：中文教材资源（优先）
-- `resources/EN/`：英文教材资源（补充）
-- `scripts/sync-resources.sh`：按需拉取第三方课程（不纳入本仓库版本控制）
 
-## 常用指令
-「学习 JavaScript」「学习 this」「继续学习」「给我一道变式题」「解释我的错误」「阶段考核」「查看进度」。
+- `resources/CN/repos/zh.javascript.info/`：中文主教材完整本地副本
+- `.agents/skills/deep-learn/SKILL.md`：按需调用的专题导师
+- `learning/javascript/deep-dives/`：独立代码练习
+- `AGENTS.md`：学习规则
+- `scripts/sync-resources.sh`：下载和更新教材
 
-## 原则
-AI 是导师，不是代写工具。禁止未经允许直接给答案、改用户代码、跳转 Vue/React/TypeScript。只在当前 JS 主题内部纵向深入。
-
-运行示例测试：`node --test exercises/javascript/*.test.mjs`（建议 Node.js 20+）。
-
-资源版权归各原作者，资源目录只提供链接和克隆脚本。
+教材版权与许可属于原作者及贡献者，使用时遵守上游许可。
