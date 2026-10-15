@@ -1,5 +1,6 @@
 node_modules/
 .DS_Store
+Course/modern-javascript/
 resources/CN/repos/
 resources/EN/repos/
 coverage/
