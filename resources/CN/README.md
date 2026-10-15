@@ -1,12 +1,19 @@
-# 中文课程资源 ~CN
+# 中文教材
 
-中文优先，教材与题目作为资料来源，AI 负责循序渐进的教学。
+## 唯一默认主教材：《现代 JavaScript 教程中文版》
 
-| 资源 | GitHub | 用途 |
-| --- | --- | --- |
-| 现代 JavaScript 教程（简体中文） | https://github.com/javascript-tutorial/zh.javascript.info | **首选主干**：基础至高级，含文章、练习题和解答 |
-| 33 个 JS 核心概念中文版 | https://github.com/stephentian/33-js-concepts | 核心机制查漏补缺 |
-| ECMAScript 6 入门 | https://github.com/ruanyf/es6tutorial | ES6+ 语法深入 |
-| JavaScript30 中文实践 | https://github.com/soyaine/JavaScript30 | 原生 JS 小项目实践 |
+源仓库：https://github.com/javascript-tutorial/zh.javascript.info
 
-执行 `bash scripts/sync-resources.sh cn` 克隆到 `resources/CN/repos/`（gitignore）。不同仓库的维护时间和内容版本不一致；旧示例需实际运行核对。禁止提前展示参考答案。
+在 LearnJS 项目根目录运行：
+
+```bash
+bash scripts/sync-resources.sh textbook
+```
+
+该命令会在 `resources/CN/repos/zh.javascript.info/` 创建**完整的工作树副本**（包含原教材文章、任务、答案及图片等），并在以后执行时快进更新。为节省磁盘，默认只克隆最近一次历史（`--depth 1`）；教材文件内容不是节选。
+
+目录下的 `index.md` 是章节，`article.md` 是文章，`task.md` 是练习，`solution.md` 是参考答案。请按原教材的编号目录学习；不要直接修改教材副本。遇到难点，按需启动 `deep-learn` Skill，并在 `learning/javascript/deep-dives/` 中练习。
+
+注意：`resources/CN/repos/` 被 Git 忽略，因此该教材副本保存在**本地工作区**，不会随着 LearnJS 的 GitHub 提交上传。换一台设备重新执行上述命令即可。
+
+许可和署名遵循上游项目的 LICENSE。
