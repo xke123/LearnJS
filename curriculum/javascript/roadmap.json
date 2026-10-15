@@ -1,0 +1,84 @@
+{
+  "system": "javascript",
+  "scope": {
+    "crossDomainExpansion": false,
+    "excluded": [
+      "Vue",
+      "React",
+      "TypeScript类型系统"
+    ]
+  },
+  "modules": [
+    {
+      "id": "01",
+      "name": "基础语法与类型",
+      "topics": [
+        "变量",
+        "值与类型",
+        "类型转换",
+        "控制流"
+      ]
+    },
+    {
+      "id": "02",
+      "name": "函数与作用域",
+      "topics": [
+        "函数定义",
+        "参数",
+        "词法作用域",
+        "闭包",
+        "this",
+        "call/apply/bind",
+        "箭头函数"
+      ]
+    },
+    {
+      "id": "03",
+      "name": "对象与原型",
+      "topics": [
+        "属性",
+        "原型链",
+        "class",
+        "new",
+        "继承"
+      ]
+    },
+    {
+      "id": "04",
+      "name": "数组与集合",
+      "topics": [
+        "map/filter/reduce",
+        "Map/Set",
+        "迭代器",
+        "生成器"
+      ]
+    },
+    {
+      "id": "05",
+      "name": "异步",
+      "topics": [
+        "Promise",
+        "async/await",
+        "微任务与任务",
+        "错误传播"
+      ]
+    },
+    {
+      "id": "06",
+      "name": "进阶与生产实践",
+      "topics": [
+        "模块",
+        "异常",
+        "内存",
+        "性能",
+        "独立JS项目"
+      ]
+    }
+  ],
+  "levels": [
+    "了解",
+    "熟悉",
+    "掌握",
+    "精通"
+  ]
+}
