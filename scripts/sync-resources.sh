@@ -1,30 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-MODE="${1:-textbook}"
-clone() {
-  local dest="$1" url="$2"
-  if [[ -d "$dest/.git" ]]; then
-    echo "已存在，更新教材：$dest"
-    git -C "$dest" pull --ff-only
-  elif [[ -e "$dest" ]]; then
-    echo "目标路径已存在但不是 Git 仓库：$dest" >&2
-    return 1
+MODE="${1:-course}"
+COURSE="$ROOT/Course/modern-javascript"
+URL="https://github.com/javascript-tutorial/zh.javascript.info.git"
+
+sync_course() {
+  if [[ -d "$COURSE/.git" ]]; then
+    echo "更新课程：$COURSE"
+    git -C "$COURSE" pull --ff-only
+  elif [[ -e "$COURSE" ]]; then
+    echo "目标路径存在但不是 Git 仓库：$COURSE" >&2
+    exit 1
   else
-    mkdir -p "$(dirname "$dest")"
-    git clone --depth 1 "$url" "$dest"
+    mkdir -p "$(dirname "$COURSE")"
+    git clone --depth 1 "$URL" "$COURSE"
   fi
 }
 case "$MODE" in
-  textbook|cn|all)
-    clone "$ROOT/resources/CN/repos/zh.javascript.info" "https://github.com/javascript-tutorial/zh.javascript.info.git"
-    ;;
-  en)
-    echo "英文资料按需手动获取；默认只同步中文主教材。"
-    ;;
-  *)
-    echo "用法：bash scripts/sync-resources.sh [textbook|cn|all|en]" >&2
-    exit 2
-    ;;
+  course|textbook) sync_course ;;
+  *) echo "用法：bash scripts/sync-resources.sh [course]" >&2; exit 2 ;;
 esac
-echo "教材已准备好：resources/CN/repos/zh.javascript.info/"
+echo "主课程已准备好：Course/modern-javascript/"
