@@ -1,47 +1,41 @@
 # LearnJS
 
-**学习主线：《现代 JavaScript 教程中文版》原版完整副本。**
+以 **《现代 JavaScript 教程中文版》** 为主课程，直接按原教材章节系统学习。遇到不懂的地方，手动调用 `deep-learn` Skill，在独立练习区进行针对性训练。
 
-你按教材原有目录系统阅读文章、完成练习；只有遇到不理解的知识点时，才使用 `deep-learn` Skill 在独立练习区针对性学习。**没有自动续学或第二套课程体系。**
-
-## 1. 获取教材副本
-
-在 Mac 终端执行：
-
-```bash
-git clone https://github.com/xke123/LearnJS.git
-cd LearnJS
-bash scripts/sync-resources.sh textbook
-```
-
-已经克隆过 LearnJS 的话，先 `git pull`，然后运行同步脚本。
-
-这会下载《现代 JavaScript 教程中文版》的**完整工作树**到：
+## 目录
 
 ```text
-resources/CN/repos/zh.javascript.info/
+LearnJS/
+├── Course/
+│   ├── README.md
+│   └── modern-javascript/          # 中文教程完整本地副本（运行脚本后出现）
+├── resources/                      # 补充资源，保留原状
+│   ├── CN/
+│   └── EN/
+├── learning/javascript/deep-dives/ # 按需创建的练习区
+├── .agents/skills/deep-learn/SKILL.md
+├── AGENTS.md
+└── scripts/sync-resources.sh
 ```
 
-教材副本在本地，不会被提交到 LearnJS 仓库（见 `.gitignore`）。再次执行脚本可以更新教材。
+## 获取主课程
 
-## 2. 系统学习
+在已克隆的 LearnJS 根目录执行：
 
-在 Antigravity IDE 中打开 LearnJS，浏览 `resources/CN/repos/zh.javascript.info/`，按照教程原有编号目录顺序阅读 `article.md`，独立完成 `task.md`；做题前不要查看 `solution.md`。
+```bash
+git pull
+bash scripts/sync-resources.sh course
+```
 
-## 3. 难点专项练习
+首次获取仓库：`git clone https://github.com/xke123/LearnJS.git`，然后 `cd LearnJS` 执行脚本。
 
-遇到难点时在聊天中输入：
+课程下载到 `Course/modern-javascript/`，是上游教程的完整文件工作树（浅克隆只限制 Git 历史），不是摘要。再次运行脚本可更新。课程副本被 Git 忽略，不随 LearnJS 仓库提交；`resources/` 仍是独立补充资料目录。
 
-> 使用 deep-learn Skill，针对我正在阅读的这段 JavaScript 教材内容深入练习。一次只出一道题，不要提前给答案。
+## 学习规则
 
-Skill 的练习代码、笔记和错题放在 `learning/javascript/deep-dives/<topic>/`，不改动教材。专题结束后自行回到教材原位置。
+1. 在 Antigravity IDE 中打开 `Course/modern-javascript/`，按照教程原有章节顺序阅读 `article.md`、完成 `task.md`，做题前不查看 `solution.md`。
+2. 遇到困难时说：「使用 deep-learn Skill，针对当前知识点逐题练习，不要直接给答案。」
+3. 练习文件放在 `learning/javascript/deep-dives/<topic>/`，不修改教材。
+4. 不使用「继续学习」、自动续课或额外课程路线。
 
-## 结构
-
-- `resources/CN/repos/zh.javascript.info/`：中文主教材完整本地副本
-- `.agents/skills/deep-learn/SKILL.md`：按需调用的专题导师
-- `learning/javascript/deep-dives/`：独立代码练习
-- `AGENTS.md`：学习规则
-- `scripts/sync-resources.sh`：下载和更新教材
-
-教材版权与许可属于原作者及贡献者，使用时遵守上游许可。
+原教程： https://github.com/javascript-tutorial/zh.javascript.info 。使用教材时遵守上游许可证。
