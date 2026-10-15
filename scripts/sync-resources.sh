@@ -1,18 +1,30 @@
 #!/usr/bin/env bash
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-MODE="${1:-cn}"
-clone() { local dest="$1" url="$2"; if [[ -d "$dest/.git" ]]; then echo "跳过已存在：$dest"; else mkdir -p "$(dirname "$dest")"; git clone --depth 1 "$url" "$dest"; fi; }
-if [[ "$MODE" == cn || "$MODE" == all ]]; then
- clone "$ROOT/resources/CN/repos/zh.javascript.info" https://github.com/javascript-tutorial/zh.javascript.info.git
- clone "$ROOT/resources/CN/repos/33-js-concepts" https://github.com/stephentian/33-js-concepts.git
- clone "$ROOT/resources/CN/repos/es6tutorial" https://github.com/ruanyf/es6tutorial.git
- clone "$ROOT/resources/CN/repos/JavaScript30" https://github.com/soyaine/JavaScript30.git
-fi
-if [[ "$MODE" == en || "$MODE" == all ]]; then
- clone "$ROOT/resources/EN/repos/curriculum" https://github.com/TheOdinProject/curriculum.git
- clone "$ROOT/resources/EN/repos/javascript-exercises" https://github.com/TheOdinProject/javascript-exercises.git
- clone "$ROOT/resources/EN/repos/You-Dont-Know-JS" https://github.com/getify/You-Dont-Know-JS.git
- clone "$ROOT/resources/EN/repos/30-Days-Of-JavaScript" https://github.com/Asabeneh/30-Days-Of-JavaScript.git
-fi
-echo "资源同步完成。"
+MODE="${1:-textbook}"
+clone() {
+  local dest="$1" url="$2"
+  if [[ -d "$dest/.git" ]]; then
+    echo "已存在，更新教材：$dest"
+    git -C "$dest" pull --ff-only
+  elif [[ -e "$dest" ]]; then
+    echo "目标路径已存在但不是 Git 仓库：$dest" >&2
+    return 1
+  else
+    mkdir -p "$(dirname "$dest")"
+    git clone --depth 1 "$url" "$dest"
+  fi
+}
+case "$MODE" in
+  textbook|cn|all)
+    clone "$ROOT/resources/CN/repos/zh.javascript.info" "https://github.com/javascript-tutorial/zh.javascript.info.git"
+    ;;
+  en)
+    echo "英文资料按需手动获取；默认只同步中文主教材。"
+    ;;
+  *)
+    echo "用法：bash scripts/sync-resources.sh [textbook|cn|all|en]" >&2
+    exit 2
+    ;;
+esac
+echo "教材已准备好：resources/CN/repos/zh.javascript.info/"
