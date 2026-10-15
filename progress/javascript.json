@@ -1,0 +1,11 @@
+{
+  "knowledgeSystem": "javascript",
+  "currentTopic": null,
+  "stage": "DIAGNOSE",
+  "mastery": "未评估",
+  "completedTopics": [],
+  "weakPoints": [],
+  "history": [],
+  "nextAction": "选择主题并进行一道诊断题",
+  "updatedAt": null
+}
